@@ -1,4 +1,11 @@
 
+
+
+function timeOut() {
+    clearInterval(myTime);
+}
+
+
 var canvasBg = document.getElementById("canvasBg"),
     ctxBg = canvasBg.getContext("2d"),
     canvasEntities = document.getElementById("canvasEntities"),
@@ -10,32 +17,47 @@ var canvasBg = document.getElementById("canvasBg"),
     numEnemies = 10,
     obstacles = [],
     isPlaying = false,
-    requestAnimFrame =  window.requestAnimationFrame ||
-                        window.webkitRequestAnimationFrame ||
-                        window.mozRequestAnimationFrame ||
-                        window.oRequestAnimationFrame ||
-                        window.msRequestAnimationFrame ||
-                        function(callback) {
-                            window.setTimeout(callback, 1000 / 60);
-                        },
+    score = 0,
+    round=0,
+    requestAnimFrame = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (callback) {
+            window.setTimeout(callback, 1000 / 60);
+        },
     imgSprite = new Image();
 imgSprite.src = "images/sprite.png";
 imgSprite.addEventListener("load", init, false);
 
 
+let time = 30 // time start from 0
+let myTime; // timer will be assign to this variable
+function timecounting() {
+    myTime = setInterval(() => {
+        if (time == 0) {
+            alert("YOU LOSEEEEEEE")
+            isPlaying = false;
+            timeOut();
+            return;
+            
+        }
+        time -= 1
+        document.getElementById('timecount').innerHTML = time
+    }, 1000)// every 1 second, it will add 1 into time variable (computer use millisecond so 1000 is 1 second)
+}
 
 
-
-let score=0;
 
 
 
 function init() {
-    document.addEventListener("keydown", function(e) {checkKey(e, true);}, false);
-    document.addEventListener("keyup", function(e) {checkKey(e, false);}, false);
+    document.addEventListener("keydown", function (e) { checkKey(e, true); }, false);
+    document.addEventListener("keyup", function (e) { checkKey(e, false); }, false);
     defineObstacles();
     initEnemies();
-    
+
 }
 
 function begin() {
@@ -67,7 +89,7 @@ function clearCtx(ctx) {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 }
 
-function randomRange (min, max) {
+function randomRange(min, max) {
     return Math.floor(Math.random() * (max + 1 - min)) + min;
 }
 
@@ -130,7 +152,7 @@ Player.prototype.checkDirection = function () {
 
     obstacleCollision = this.checkObstacleCollide(newDrawX, newDrawY);
     enemiesCollision = this.checkEnemiesCollide(newDrawX, newDrawY);
-            
+
 
     if (!obstacleCollision && !outOfBounds(this, newDrawX, newDrawY)) {
         this.drawX = newDrawX;
@@ -157,9 +179,8 @@ Player.prototype.checkObstacleCollide = function (newDrawX, newDrawY) {
     }
 };
 Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
-    var enemiesCounter = 0,
-        newCenterX = newDrawX ,
-        newCenterY = newDrawY ;
+    newCenterX = newDrawX,
+        newCenterY = newDrawY;
     for (var i = 0; i < enemies.length; i++) {
         if (
             !enemies[i].isDead &&
@@ -167,15 +188,16 @@ Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
             && enemies[i].drawX <= (newCenterX + 20)
             && newCenterY <= (enemies[i].drawY + 20)
             && enemies[i].drawY <= (newCenterY + 20)
-          ) {
+        ) {
             // Pick a new location for the monster.
             // Note: Change this to place the monster at a new, random location.
             alert("U ARE DEAD ");
-            isPlaying=false
-          }      
+            isPlaying = false;
+            timeOut();
+        }
     }
 
-   
+
 };
 
 
@@ -208,15 +230,6 @@ Player.prototype.drawAllBullets = function () {
         }
     }
 };
-
-
-
-
-
-
-
-
-
 
 function Bullet() {
     this.radius = 2;
@@ -314,14 +327,14 @@ function defineObstacles() {
         bushHeight = 28;
 
     obstacles = [new Obstacle(78, 360, treeWidth, treeHeight),
-        new Obstacle(390, 395, treeWidth, treeHeight),
-        new Obstacle(415, 102, treeWidth, treeHeight),
-        new Obstacle(619, 184,treeWidth, treeHeight),
-        new Obstacle(97, 63, rockDimensions, rockDimensions),
-        new Obstacle(296, 379, rockDimensions, rockDimensions),
-        new Obstacle(295, 25, 150, bushHeight),
-        new Obstacle(570, 138, 150, bushHeight),
-        new Obstacle(605, 492, 90, bushHeight)];
+    new Obstacle(390, 395, treeWidth, treeHeight),
+    new Obstacle(415, 102, treeWidth, treeHeight),
+    new Obstacle(619, 184, treeWidth, treeHeight),
+    new Obstacle(97, 63, rockDimensions, rockDimensions),
+    new Obstacle(296, 379, rockDimensions, rockDimensions),
+    new Obstacle(295, 25, 150, bushHeight),
+    new Obstacle(570, 138, 150, bushHeight),
+    new Obstacle(605, 492, 90, bushHeight)];
 }
 
 
@@ -340,7 +353,7 @@ function Enemy() {
     this.randomMoveTime = randomRange(1000, 2000);
     this.speed = 2;
     var that = this;
-    this.moveInterval = setInterval(function() {that.setTargetLocation();}, that.randomMoveTime);
+    this.moveInterval = setInterval(function () { that.setTargetLocation(); }, that.randomMoveTime);
     this.isDead = false;
 }
 
@@ -395,22 +408,25 @@ Enemy.prototype.die = function () {
     clearInterval(this.moveInterval);
     this.srcX = 185;
     this.isDead = true;
-    this.speed=0;
+    this.speed = 0;
     // this.targetX=-50;
     // this.targetY=-50
     score++;
     updateScore();
-    if(score===enemies.length)
+    if (score === enemies.length) 
     {
+        //WON CODING
         alert("U WONNNNNNNN")
-        isPlaying=false;
+        isPlaying = false;
+        timeOut();
+        document.getElementById("round").innerHTML=`Round:${round}`;
+        document.getElementById("btn-next-round").style="opacity:1"
     }
-    
+
 
 };
 
-function updateScore()
-{
+function updateScore() {
     document.getElementById("score-section").innerHTML = `${score}`
 }
 
