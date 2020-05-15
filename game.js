@@ -45,7 +45,7 @@ function timecounting() {
 
         }
         time -= 1
-        document.getElementById('timecount').innerHTML = time
+        document.getElementById('timecount').innerHTML = `Time Left:${time}`
     }, 1000)// every 1 second, it will add 1 into time variable (computer use millisecond so 1000 is 1 second)
 }
 
@@ -101,8 +101,8 @@ function Player() {
     this.srcY = 600;
     this.width = 35;
     this.height = 54;
-    this.drawX = 400;
-    this.drawY = 300;
+    this.drawX = 100;
+    this.drawY = 100;
     this.centerX = this.drawX + (this.width / 2);
     this.centerY = this.drawY + (this.height / 2);
     this.speed = 2;
@@ -345,8 +345,8 @@ function Enemy() {
     this.srcY = 600;
     this.width = 45;
     this.height = 54;
-    this.drawX = randomRange(0, canvasWidth - this.width);
-    this.drawY = randomRange(0, canvasHeight - this.height);
+    this.drawX = randomRange(200, canvasWidth - this.width);
+    this.drawY = randomRange(200, canvasHeight - this.height);
     this.centerX = this.drawX + (this.width / 2);
     this.centerY = this.drawY + (this.height / 2);
     this.targetX = this.centerX;
@@ -430,7 +430,7 @@ Enemy.prototype.die = function () {
 
 function updateScore() {
     score++;
-    document.getElementById("score-section").innerHTML = `${score}`
+    document.getElementById("score-section").innerHTML = `Curent Score:${score}`
     console.log(enemies.length + (round * 2))
 }
 
