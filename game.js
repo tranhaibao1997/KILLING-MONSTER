@@ -14,11 +14,12 @@ var canvasBg = document.getElementById("canvasBg"),
     canvasHeight = canvasBg.height,
     player1 = new Player(),
     enemies = [],
-    numEnemies = 5,
+    round = 1,
+    numEnemies = 5 + (round * 2),
     obstacles = [],
     isPlaying = false,
     score = 0,
-    round=0,
+
     requestAnimFrame = window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
@@ -41,7 +42,7 @@ function timecounting() {
             isPlaying = false;
             timeOut();
             return;
-            
+
         }
         time -= 1
         document.getElementById('timecount').innerHTML = time
@@ -411,23 +412,26 @@ Enemy.prototype.die = function () {
     this.speed = 0;
     // this.targetX=-50;
     // this.targetY=-50
-    score++;
     updateScore();
-    if (score === enemies.length) 
-    {
-        //WON CODING
+
+    if (enemies.every(enemie => enemie.isDead === true)) {
+        //WON 
         alert("U WONNNNNNNN")
         isPlaying = false;
         timeOut();
-        document.getElementById("round").innerHTML=`Round:${round}`;
-        document.getElementById("btn-next-round").style="opacity:1"
+        document.getElementById("round").innerHTML = `Round:${round}`;
+        document.getElementById("btn-next-round").style = "opacity:1"
     }
+
+
 
 
 };
 
 function updateScore() {
+    score++;
     document.getElementById("score-section").innerHTML = `${score}`
+    console.log(enemies.length + (round * 2))
 }
 
 
