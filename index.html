@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Coder School - 2D game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="main">
+            <div class="info">
+                <h1>WIPE OUT THE MONSTERRRRRR</h1>
+                <input id="input" type="text" placeholder="Enter player name">
+                <button id="btn" onclick="startGame()">START TO PLAY</button>
+                <p id="hello"></p>
+                <div id="score-section"></div>
+            </div>
+            <div class="canvas-container" id="canvas">
+                <canvas id="canvasBg" width="800" height="600"></canvas>
+            
+                <div id="overlapping">
+                    <canvas id="canvasEntities" width="800" height="600"></canvas>
+                </div>
+            </div>
+        </div>
+                
+
+        
+
+        <script src="game.js"></script>
+        <script src="info.js"></script>
+
+
+    </body>
+</html>

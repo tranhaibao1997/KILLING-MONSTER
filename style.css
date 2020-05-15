@@ -1,0 +1,33 @@
+body {
+    background: #202020;
+}
+
+
+#canvas {
+    
+    display: none;
+}
+
+
+#canvasBg {
+    background: #ffffff;
+}
+
+
+#overlapping canvas {
+    margin: -600px 0 0;
+}
+
+.main
+{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: antiquewhite;
+}
+.info
+{
+    width: 50%  ;
+}
