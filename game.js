@@ -162,6 +162,7 @@ Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
         newCenterY = newDrawY ;
     for (var i = 0; i < enemies.length; i++) {
         if (
+            !enemies[i].isDead &&
             newCenterX <= (enemies[i].drawX + 20)
             && enemies[i].drawX <= (newCenterX + 20)
             && newCenterY <= (enemies[i].drawY + 20)
@@ -169,7 +170,7 @@ Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
           ) {
             // Pick a new location for the monster.
             // Note: Change this to place the monster at a new, random location.
-            alert("U ARE DEATH ")
+            alert("U ARE DEAD ");
             isPlaying=false
           }      
     }
@@ -394,15 +395,15 @@ Enemy.prototype.die = function () {
     clearInterval(this.moveInterval);
     this.srcX = 185;
     this.isDead = true;
-    this.speed=10;
-    this.targetX=-50;
-    this.targetY=-50
+    this.speed=0;
+    // this.targetX=-50;
+    // this.targetY=-50
     score++;
     updateScore();
     if(score===enemies.length)
     {
         alert("U WONNNNNNNN")
-        isPlaying=false
+        isPlaying=false;
     }
     
 
