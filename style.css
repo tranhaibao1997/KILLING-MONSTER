@@ -33,5 +33,9 @@ body {
 }
 #btn-next-round
 {
-    opacity: 0;
+    display: none;
+}
+#btn-reset
+{
+display: none;
 }

@@ -41,6 +41,9 @@ function timecounting(time) {
             alert("YOU LOSEEEEEEE")
             isPlaying = false;
             timeOut();
+            document.getElementById("btn-reset").style="display:block"
+            scoreStack.push(score);
+
             return;
 
         }
@@ -195,6 +198,9 @@ Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
             alert("U ARE DEAD ");
             isPlaying = false;
             timeOut();
+            scoreStack.push(score);
+            document.getElementById("btn-reset").style="display:block"
+            var playthrough={'player':player,'score':score}
         }
     }
 
@@ -420,7 +426,7 @@ Enemy.prototype.die = function () {
         isPlaying = false;
         timeOut();
         document.getElementById("round").innerHTML = `Round:${round}`;
-        document.getElementById("btn-next-round").style = "opacity:1"
+        document.getElementById("btn-next-round").style = "display:block "
     }
 
 
