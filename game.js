@@ -33,9 +33,9 @@ imgSprite.src = "images/sprite.png";
 imgSprite.addEventListener("load", init, false);
 
 
-let time = 30 // time start from 0
+// time start from 0
 let myTime; // timer will be assign to this variable
-function timecounting() {
+function timecounting(time) {
     myTime = setInterval(() => {
         if (time == 0) {
             alert("YOU LOSEEEEEEE")
@@ -233,7 +233,7 @@ Player.prototype.drawAllBullets = function () {
 };
 
 function Bullet() {
-    this.radius = 2;
+    this.radius = 5;
     this.width = this.radius * 2;
     this.height = this.radius * 2;
     this.drawX = 0;

@@ -19,11 +19,12 @@ function moveToNextRound()
     player1.drawY=100
     enemies=[];
     numEnemies+=(round*1)
-    enemies.randomMoveTime = randomRange(1000-(round*200), 1500-(round*200));
+    enemies.randomMoveTime = randomRange(800-(round*200), 1000-(round*200));
     initEnemies();
     begin();
     console.log(enemies)
     console.log(round)
+    timecounting(30);
    
     
 }
