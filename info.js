@@ -15,7 +15,10 @@ function moveToNextRound()
     round++;
     document.getElementById("btn-next-round").style="opacity:0"
     document.getElementById("round").innerHTML=`Round:${round}`;
+    enemies=[]
+    initEnemies();
     begin();
+   
     
 }
 
