@@ -1,38 +1,55 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Coder School - 2D game</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="main">
-            <div class="info">
-                <h1>WIPE OUT THE MONSTERRRRRR</h1>
-                <input id="input" type="text" placeholder="Enter player name">
-                <button id="btn" onclick="startGame()">START TO PLAY</button>
-                <p id="hello"></p>
-                <div id="score-section"></div>
-                <div id="highscore-section"></div>
-                <div id="timecount"></div>
-                <div id="round"></div>
-                <button id="btn-next-round" onclick="moveToNextRound()">NEXT LEVEL</button>
-                <button id="btn-reset" onclick="reset()">PLAY AGAIN ?</button>
-            </div>
-            <div class="canvas-container" id="canvas">
-                <canvas id="canvasBg" width="800" height="600"></canvas>
+
+<head>
+    <title>Coder School - 2D game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="info">
+            <h1>WIPE OUT THE MONSTERRRRRR</h1>
+            <input id="input" type="text" placeholder="Enter player name">
+            <button id="btn" onclick="startGame()">START TO PLAY</button>
+            <p id="hello"></p>
+            <div id="score-section"></div>
+            <div id="highscore-section"></div>
+            <div id="timecount"></div>
+            <div id="round"></div>
             
-                <div id="overlapping">
-                    <canvas id="canvasEntities" width="800" height="600"></canvas>
+        </div>
+
+        <div class="canvas-container" id="canvas">
+            <div class="choose-to-continue" id="choose-to-continue">
+                <div class="choose-to-continue-content">
+                    <h1>CHOOSE YOUR REWARD AND MOVE TO NEXT ROUND</h1>
+                    <div class="options">
+                        <button onclick="addSpeed()">+1 Character Speed</button>
+                        <button onclick="addTime()">+5s</button>
+                        <button onclick="addBulletSpeed()">+1 Bullet Speed</button>
+                    </div>
+                    
                 </div>
+                
+                <!-- <button id="btn-reset" onclick="reset()">PLAY AGAIN ?</button>
+                <button id="btn-save-and-exit" onclick="save()">SAVE AND EXIT ?</button> -->
+            </div>
+            <canvas id="canvasBg" width="800" height="600"></canvas>
+
+            <div id="overlapping">
+                <canvas id="canvasEntities" width="800" height="600"></canvas>
             </div>
         </div>
-                
-
-        
-
-        <script src="game.js"></script>
-        <script src="info.js"></script>
+    </div>
 
 
-    </body>
+
+
+    <script src="game.js"></script>
+    <script src="info.js"></script>
+
+
+</body>
+
 </html>

@@ -15,6 +15,7 @@ var canvasBg = document.getElementById("canvasBg"),
     player1 = new Player(),
     enemies = [],
     round = 1,
+    time=30
     numEnemies = 3,
     obstacles = [],
     isPlaying = false,
@@ -34,6 +35,7 @@ imgSprite.addEventListener("load", init, false);
 
 
 // time start from 0
+
 let myTime; // timer will be assign to this variable
 function timecounting(time) {
     myTime = setInterval(() => {
@@ -41,7 +43,7 @@ function timecounting(time) {
             alert("YOU LOSEEEEEEE")
             isPlaying = false;
             timeOut();
-            document.getElementById("btn-reset").style="display:block"
+            document.getElementById("btn-reset").style = "display:block"
             scoreStack.push(score);
 
             return;
@@ -199,8 +201,8 @@ Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
             isPlaying = false;
             timeOut();
             scoreStack.push(score);
-            document.getElementById("btn-reset").style="display:block"
-            var playthrough={'player':player,'score':score}
+            document.getElementById("btn-reset").style = "display:block"
+
         }
     }
 
@@ -247,7 +249,7 @@ function Bullet() {
     this.isFlying = false;
     this.xVel = 0;
     this.yVel = 0;
-    this.speed = 6;
+    this.speed = 10;
 }
 
 Bullet.prototype.update = function () {
@@ -425,8 +427,11 @@ Enemy.prototype.die = function () {
         alert("U WONNNNNNNN")
         isPlaying = false;
         timeOut();
+        document.getElementById("choose-to-continue").style="z-index:1"
         document.getElementById("round").innerHTML = `Round:${round}`;
         document.getElementById("btn-next-round").style = "display:block "
+        document.getElementById("choose-to-continue").style="display:block !important"
+
     }
 
 

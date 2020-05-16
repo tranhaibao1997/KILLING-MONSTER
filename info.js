@@ -1,6 +1,7 @@
 
 let player="";
 let scoreStack=[];
+let max=0;
 
 function startGame() {
     player = document.getElementById("input").value
@@ -12,14 +13,15 @@ function startGame() {
     document.getElementById("btn").disabled=true;
     document.getElementById("round").innerHTML=`Round:${round}`;
     begin();
-    timecounting(30);
+    timecounting(time);
  
     
 }
+
 function moveToNextRound()
 {
     round++;
-    document.getElementById("btn-next-round").style="opacity:0"
+    document.getElementById("choose-to-continue").style="z-index:-1"
     document.getElementById("round").innerHTML=`Round:${round}`;
     player1.drawX=100;
     player1.drawY=100
@@ -28,15 +30,41 @@ function moveToNextRound()
     enemies.randomMoveTime = randomRange(800-(round*200), 1000-(round*200));
     initEnemies();
     begin();
-    console.log(enemies)
-    console.log(round)
-    timecounting(30);
+    timecounting(time);
+}
+
+function addSpeed()
+{
+   
+    moveToNextRound();
+    player1.speed+=1
+    
+}
+function addTime()
+{
+    time=35;
+    moveToNextRound();
    
     
 }
+
+function addBulletSpeed()
+{
+   
+   
+    for(let i=0;i<player1.bullets.length;i++)
+    {
+        player1.bullets[i].speed+=5
+        
+    }
+    moveToNextRound();
+    console.log(player1.bullets)
+    
+}
+
 function reset()
 {
-    let max=scoreStack[0];
+    max=scoreStack[0];
     round=1;
     score=0;
     for(let i=0;i<scoreStack.length;i++)
@@ -60,4 +88,10 @@ function reset()
     document.getElementById("btn-reset").style="display:none"
         
 
+}
+
+function save()
+{
+    var playthrough={'player':player,'high score':max}
+    localStorage.setItem('playthrough', JSON.stringify(playthrough));
 }
