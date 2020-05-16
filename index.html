@@ -23,12 +23,23 @@
            
             
             <p id="hello" style="font-size: 50px;"></p>
+            <table id="empty">
+                <tr>
+                    <th style="    width: 178px;">Player</th>
+                    <th>Best Score</th>
+                  </tr>
+            </table>
+            <table id="history">
+              
+                
+              </table>
             <div class="playthrough-info">
                 <div id="score-section"></div>
                 <div id="highscore-section"></div>
                 <div id="timecount"></div>
                 <div id="round"></div>
             </div>
+            
             
             
         </div>
@@ -53,7 +64,7 @@
                     <h1>GAME OVER</h1>
                     <div class="options">
                         <button onclick="reset()">Play Again ?</button>
-                        <button onclick="">Save & Exit</button>
+                        <button onclick="save()">Save & Exit</button>
                        
                     </div>
                     

@@ -111,7 +111,7 @@ function Player() {
     this.drawY = 100;
     this.centerX = this.drawX + (this.width / 2);
     this.centerY = this.drawY + (this.height / 2);
-    this.speed = 1;
+    this.speed = 2;
     this.isUpKey = false;
     this.isRightKey = false;
     this.isDownKey = false;
@@ -203,7 +203,7 @@ Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
             isPlaying = false;
             timeOut();
             scoreStack.push(score);
-            document.getElementById("btn-reset").style = "display:block"
+           
 
         }
     }
@@ -251,7 +251,7 @@ function Bullet() {
     this.isFlying = false;
     this.xVel = 0;
     this.yVel = 0;
-    this.speed = 5;
+    this.speed = 10;
 }
 
 Bullet.prototype.update = function () {

@@ -1,6 +1,21 @@
 
 let player = "";
 let scoreStack = [0]
+a = JSON.parse(localStorage.getItem('session')) || [];
+
+function render(data) {
+    function createScoreTable(elm) {
+        return `
+      <tr>
+      <td>${elm.player}</td>
+      <td>${elm.highscore}</td>
+      </tr>
+   `}
+    const scoreNode = data.map(createScoreTable);
+    document.getElementById("history").innerHTML = (scoreNode);
+}
+render(a)
+
 
 function startGame() {
     player = document.getElementById("input").value
@@ -12,6 +27,8 @@ function startGame() {
     document.getElementById("round").innerHTML = `Round:${round}`;
     begin();
     timecounting(time);
+    document.getElementById("history").style="display:none"
+    document.getElementById("empty").style="display:none"
 
 
 }
@@ -70,14 +87,17 @@ function addBulletSpeed() {
 }
 
 function reset() {
+    let max = updateHighScore()
+
+    document.getElementById("highscore-section").innerHTML = `Highest Score:${max}`
     round = 1;
     score = 0;
-    player1.speed=1;
+    player1.speed = 1;
     for (let i = 0; i < player1.bullets.length; i++) {
-        player1.bullets[i].speed =5
+        player1.bullets[i].speed = 5
 
     }
-    
+
     document.getElementById("score-section").innerHTML = `Current score:${score}`
     document.getElementById("round").innerHTML = `Round:${round}`;
     player1.drawX = 100;
@@ -94,6 +114,15 @@ function reset() {
 }
 
 function save() {
-    var playthrough = { 'player': player, 'high score': max }
-    localStorage.setItem('playthrough', JSON.stringify(playthrough));
+    let max = updateHighScore()
+    alert(`Your best score:${max}`)
+    var playthrough = { 'player': player , 'highscore': max }
+
+
+
+    var a = [];
+    a = JSON.parse(localStorage.getItem('session')) || [];
+    a.push(playthrough);
+    localStorage.setItem('session', JSON.stringify(a));
+    window.location.reload();
 }
