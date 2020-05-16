@@ -1,7 +1,6 @@
 
-let player="";
-let scoreStack=[];
-let max=0;
+let player = "";
+let scoreStack = [0]
 
 function startGame() {
     player = document.getElementById("input").value
@@ -9,88 +8,92 @@ function startGame() {
     document.getElementById("hello").innerHTML = `Hello Player: ${player}`
     document.getElementById("score-section").innerHTML = `Current score:${score}`
     document.getElementById("highscore-section").innerHTML = "High Score: 0"
-    document.getElementById("player-input").style="display:none"
-    document.getElementById("round").innerHTML=`Round:${round}`;
+    document.getElementById("player-input").style = "display:none"
+    document.getElementById("round").innerHTML = `Round:${round}`;
     begin();
     timecounting(time);
- 
-    
+
+
+}
+function updateHighScore() {
+
+    let max = scoreStack[0];
+    console.log(scoreStack)
+    for (let i = 1; i < scoreStack.length; i++)
+        if (scoreStack[i] > max)
+            max = scoreStack[i];
+
+    return max;
 }
 
-function moveToNextRound()
-{
+function moveToNextRound() {
+
+    let max = updateHighScore()
+
+    document.getElementById("highscore-section").innerHTML = `Highest Score:${max}`
     round++;
-    document.getElementById("choose-to-continue").style="z-index:-1"
-    document.getElementById("round").innerHTML=`Round:${round}`;
-    player1.drawX=100;
-    player1.drawY=100
-    enemies=[];
-    numEnemies+=(round*1)
-    enemies.randomMoveTime = randomRange(800-(round*200), 1000-(round*200));
+    document.getElementById("choose-to-continue").style = "z-index:-1"
+    document.getElementById("round").innerHTML = `Round:${round}`;
+    player1.drawX = 100;
+    player1.drawY = 100
+    enemies = [];
+    numEnemies += (round * 1)
+    enemies.randomMoveTime = randomRange(800 - (round * 200), 1000 - (round * 200));
     initEnemies();
     begin();
     timecounting(time);
 }
 
-function addSpeed()
-{
-   
+function addSpeed() {
+
     moveToNextRound();
-    player1.speed+=0.5
-    
+    player1.speed += 0.5
+
 }
-function addTime()
-{
-    time=35;
+function addTime() {
+    time = 35;
     moveToNextRound();
-   
-    
+
+
 }
 
-function addBulletSpeed()
-{
-   
-   
-    for(let i=0;i<player1.bullets.length;i++)
-    {
-        player1.bullets[i].speed+=4
-        
+function addBulletSpeed() {
+
+
+    for (let i = 0; i < player1.bullets.length; i++) {
+        player1.bullets[i].speed += 4
+
     }
     moveToNextRound();
     console.log(player1.bullets)
-    
+
 }
 
-function reset()
-{
-    max=scoreStack[0];
-    round=1;
-    score=0;
-    for(let i=0;i<scoreStack.length;i++)
-    {
-        if(scoreStack[i]>max)
-        {
-            max=scoreStack[i]
-        }
+function reset() {
+    round = 1;
+    score = 0;
+    player1.speed=1;
+    for (let i = 0; i < player1.bullets.length; i++) {
+        player1.bullets[i].speed =5
+
     }
-    document.getElementById("highscore-section").innerHTML = `Highest Score:${max}`
+    
     document.getElementById("score-section").innerHTML = `Current score:${score}`
-    document.getElementById("round").innerHTML=`Round:${round}`;
-    player1.drawX=100;
-    player1.drawY=100
-    enemies=[];
-    numEnemies=3
-    enemies.randomMoveTime = randomRange(800-(round*200), 1000-(round*200));
+    document.getElementById("round").innerHTML = `Round:${round}`;
+    player1.drawX = 100;
+    player1.drawY = 100;
+    enemies = [];
+    numEnemies = 3
+    enemies.randomMoveTime = randomRange(800 - (round * 200), 1000 - (round * 200));
     initEnemies();
     begin();
-    timecounting(30);
-    document.getElementById("btn-reset").style="display:none"
-        
+    timecounting(time);
+    document.getElementById("lose").style = "z-index:-1"
+
 
 }
 
-function save()
-{
-    var playthrough={'player':player,'high score':max}
+function save() {
+    var playthrough = { 'player': player, 'high score': max }
     localStorage.setItem('playthrough', JSON.stringify(playthrough));
 }

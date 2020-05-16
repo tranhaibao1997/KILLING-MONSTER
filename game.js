@@ -111,7 +111,7 @@ function Player() {
     this.drawY = 100;
     this.centerX = this.drawX + (this.width / 2);
     this.centerY = this.drawY + (this.height / 2);
-    this.speed = 2;
+    this.speed = 1;
     this.isUpKey = false;
     this.isRightKey = false;
     this.isDownKey = false;
@@ -251,7 +251,7 @@ function Bullet() {
     this.isFlying = false;
     this.xVel = 0;
     this.yVel = 0;
-    this.speed = 10;
+    this.speed = 5;
 }
 
 Bullet.prototype.update = function () {
@@ -425,7 +425,8 @@ Enemy.prototype.die = function () {
     updateScore();
 
     if (enemies.every(enemie => enemie.isDead === true)) {
-        //WON 
+        //WON
+        scoreStack.push(score) 
         alert("U WONNNNNNNN")
         isPlaying = false;
         timeOut();
@@ -433,8 +434,11 @@ Enemy.prototype.die = function () {
         document.getElementById("round").innerHTML = `Round:${round}`;
         document.getElementById("btn-next-round").style = "display:block "
         document.getElementById("choose-to-continue").style="display:block !important"
+        
+        
 
     }
+
 
 
 
