@@ -2,21 +2,34 @@
 <html>
 
 <head>
-    <title>Coder School - 2D game</title>
+    <title>GHOST HUNTER !!!</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a8c4c24db6.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="main">
         <div class="info">
-            <h1>WIPE OUT THE MONSTERRRRRR</h1>
-            <input id="input" type="text" placeholder="Enter player name">
-            <button id="btn" onclick="startGame()">START TO PLAY</button>
-            <p id="hello"></p>
-            <div id="score-section"></div>
-            <div id="highscore-section"></div>
-            <div id="timecount"></div>
-            <div id="round"></div>
+            <h1><i style="color:white" class="fas fa-ghost"></i >  GHOST HUNTER !!!</h1>
+                <div class="player-input" id="player-input">
+                    <div class="search-box">
+                        <i class="fas fa-user"></i>
+                        <input id="input" type="text" placeholder="Input your name here...">
+            
+                    </div>
+                    <button id="btn" onclick="startGame()">START TO PLAY</button>
+                </div>
+              
+           
+            
+            <p id="hello" style="font-size: 50px;"></p>
+            <div class="playthrough-info">
+                <div id="score-section"></div>
+                <div id="highscore-section"></div>
+                <div id="timecount"></div>
+                <div id="round"></div>
+            </div>
+            
             
         </div>
 
@@ -25,9 +38,23 @@
                 <div class="choose-to-continue-content">
                     <h1>CHOOSE YOUR REWARD AND MOVE TO NEXT ROUND</h1>
                     <div class="options">
-                        <button onclick="addSpeed()">+1 Character Speed</button>
+                        <button onclick="addSpeed()">Increase Character Speed</button>
                         <button onclick="addTime()">+5s</button>
-                        <button onclick="addBulletSpeed()">+1 Bullet Speed</button>
+                        <button onclick="addBulletSpeed()">Increase Bullet Speed</button>
+                    </div>
+                    
+                </div>
+                
+                <!-- <button id="btn-reset" onclick="reset()">PLAY AGAIN ?</button>
+                <button id="btn-save-and-exit" onclick="save()">SAVE AND EXIT ?</button> -->
+            </div>
+            <div class="lose" id="lose">
+                <div class="lose-content">
+                    <h1>GAME OVER</h1>
+                    <div class="options">
+                        <button onclick="">Play Again ?</button>
+                        <button onclick="">Save & Exit</button>
+                       
                     </div>
                     
                 </div>

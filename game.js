@@ -41,6 +41,7 @@ function timecounting(time) {
     myTime = setInterval(() => {
         if (time == 0) {
             alert("YOU LOSEEEEEEE")
+            document.getElementById("lose").style="z-index:1";
             isPlaying = false;
             timeOut();
             document.getElementById("btn-reset").style = "display:block"
@@ -198,6 +199,7 @@ Player.prototype.checkEnemiesCollide = function (newDrawX, newDrawY) {
             // Pick a new location for the monster.
             // Note: Change this to place the monster at a new, random location.
             alert("U ARE DEAD ");
+            document.getElementById("lose").style="z-index:1"
             isPlaying = false;
             timeOut();
             scoreStack.push(score);

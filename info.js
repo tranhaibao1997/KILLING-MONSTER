@@ -6,11 +6,10 @@ let max=0;
 function startGame() {
     player = document.getElementById("input").value
     document.getElementById("canvas").style = "display:block !important";
-    document.getElementById("hello").innerHTML = `Hello player: ${player}`
+    document.getElementById("hello").innerHTML = `Hello Player: ${player}`
     document.getElementById("score-section").innerHTML = `Current score:${score}`
     document.getElementById("highscore-section").innerHTML = "High Score: 0"
-    document.getElementById("input").disabled=true
-    document.getElementById("btn").disabled=true;
+    document.getElementById("player-input").style="display:none"
     document.getElementById("round").innerHTML=`Round:${round}`;
     begin();
     timecounting(time);
@@ -37,7 +36,7 @@ function addSpeed()
 {
    
     moveToNextRound();
-    player1.speed+=1
+    player1.speed+=0.5
     
 }
 function addTime()
@@ -54,7 +53,7 @@ function addBulletSpeed()
    
     for(let i=0;i<player1.bullets.length;i++)
     {
-        player1.bullets[i].speed+=5
+        player1.bullets[i].speed+=4
         
     }
     moveToNextRound();
