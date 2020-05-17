@@ -147,7 +147,7 @@ body {
 .playthrough-info
 {
     font-size: 46px;
-    color: red;
+    
 }
 
 #history,#empty {
@@ -177,4 +177,20 @@ body {
     text-align: left;
     background-color: black;
     color: white;
+  }
+
+  .playthrough-info
+  {
+    border: 2px solid black;
+    width: 341px;
+    display: none;
+  }
+  .playthrough-info #highscore-section
+  {
+    color: yellow;
+  }
+  .instruction
+  {
+    width: 60%;
+    
   }

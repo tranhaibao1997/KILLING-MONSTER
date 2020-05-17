@@ -51,7 +51,7 @@ function timecounting(time) {
 
         }
         time -= 1
-        document.getElementById('timecount').innerHTML = `Time Left:${time}`
+        document.getElementById('timecount').innerHTML = `${time}`
     }, 1000)// every 1 second, it will add 1 into time variable (computer use millisecond so 1000 is 1 second)
 }
 
@@ -251,7 +251,7 @@ function Bullet() {
     this.isFlying = false;
     this.xVel = 0;
     this.yVel = 0;
-    this.speed = 10;
+    this.speed = 6;
 }
 
 Bullet.prototype.update = function () {
