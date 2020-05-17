@@ -1,4 +1,25 @@
 
+function onReady(callback) {
+    var intervalId = window.setInterval(function() {
+      if (document.getElementsByTagName('body')[0] !== undefined) {
+        window.clearInterval(intervalId);
+        callback.call(this);
+      }
+    }, 3000);
+  }
+  
+  function setVisible(selector, visible) {
+    document.querySelector(selector).style.display = visible ? 'block' : 'none';
+  }
+  
+  onReady(function() {
+    setVisible('.content', true);
+    setVisible('.loader', false);
+  });
+
+
+
+
 let player = "";
 let scoreStack = [0]
 a = JSON.parse(localStorage.getItem('session')) || [];
@@ -56,7 +77,9 @@ function moveToNextRound() {
     player1.drawY = 100
     enemies = [];
     numEnemies += (round * 1)
-    enemies.randomMoveTime = randomRange(800 - (round * 200), 1000 - (round * 200));
+    round==2||5||7||10 ?enemies.forEach(eni=>eni.speed++) :""
+    console.log(enemies)
+    enemies.forEach(elm=>elm.randomMoveTime = randomRange(800 - (round * 200), 1000 - (round * 200)));
     initEnemies();
     begin();
     timecounting(time);
@@ -69,7 +92,7 @@ function addSpeed() {
 
 }
 function addTime() {
-    time = 35;
+    time +=5;
     moveToNextRound();
 
 

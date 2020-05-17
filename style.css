@@ -1,3 +1,22 @@
+.content
+{
+    display: none;
+}
+.loader {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: #202020;
+    background-image: url("./images/Bean\ Eater-0.5s-197px.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+
 body {
   background: #202020;
 }
